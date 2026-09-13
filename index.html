@@ -152,6 +152,18 @@ section[id]{scroll-margin-top:64px}
 .hero{padding:96px 0 40px}
 .hero .lead{margin-bottom:0}
 
+/* ── Fotos (geradas e aprovadas pelo juiz — ver CLAUDE.md do repo) ──────────────
+   ⚠️ `object-position` mantém as cabeças: com `object-fit:cover` e o default `center`, o corte
+   largo decapita (cicatriz do acompanhaobra). As fotos saem em 3:2 com cabeças no terço de cima. */
+.heroimg{margin:48px 0 0}
+.heroimg img{width:100%;border-radius:28px;aspect-ratio:16/9;object-fit:cover;object-position:center 22%}
+.foto-secao{margin:40px 0 0}
+.foto-secao img{width:100%;border-radius:24px;aspect-ratio:21/9;object-fit:cover;object-position:center 30%}
+@media(max-width:860px){
+  .heroimg img{aspect-ratio:4/3;border-radius:20px}
+  .foto-secao img{aspect-ratio:4/3;border-radius:20px}
+}
+
 /* ── Kanban ilustrativo — INTERFACE em HTML/CSS, não imagem (doutrina das irmãs:
    gerador de imagem alucina texto em tela). Rotulado como exemplo, sempre. ── */
 .kanban{
@@ -224,6 +236,7 @@ details p{margin:14px 0 0;color:var(--tinta-2);max-width:70ch}
         <a href="#funil">O funil</a>
         <a href="#dia">O dia do vendedor</a>
         <a href="#entrada">De onde vem o lead</a>
+        <a href="#preco">Preço</a>
         <a href="#limites">O que não faz</a>
       </span>
       <span class="nav-acoes">
@@ -244,6 +257,14 @@ details p{margin:14px 0 0;color:var(--tinta-2);max-width:70ch}
       <a class="btn" href="https://wa.me/5562985673142?text=Quero%20ver%20o%20vendeaqui%20rodando%20no%20meu%20time">Falar no WhatsApp</a>
       <a class="btn btn-ghost" href="#funil">Ver como funciona</a>
     </div>
+
+    <!-- Foto gerada (gpt-image-1) e aprovada pelo juiz em 13/09/2026: vende o resultado (venda fechada
+         no balcão), gente brasileira real, notebook de costas — nenhuma tela legível. Ampliada antes de
+         entrar (mãos conferidas). Interface do produto continua no Kanban em HTML logo abaixo. -->
+    <figure class="heroimg">
+      <img src="/assets/hero.jpg" alt="Dona de uma pequena loja sorri e aperta a mão de um cliente no balcão, fechando uma venda."
+           width="1600" height="1067" fetchpriority="high" decoding="async" />
+    </figure>
 
     <figure class="kanban" style="margin-left:0;margin-right:0" role="img"
             aria-label="Exemplo ilustrativo de um quadro de vendas com quatro colunas: Lead, Contato, Proposta e Ganho.">
@@ -283,6 +304,12 @@ details p{margin:14px 0 0;color:var(--tinta-2);max-width:70ch}
     <span class="olho">O funil</span>
     <h2>Registrou, avançou.</h2>
     <p class="lead">A demonstração registrada leva o lead para a etapa certa. A proposta enviada, para a seguinte. E o funil nunca anda para trás por causa de uma ligação atrasada.</p>
+    <!-- Foto gerada e aprovada pelo juiz em 13/09/2026 (funil_4): dupla trabalhando junto, notebooks de
+         costas. A funil_1 foi reprovada por mão sobrando, visível só no zoom. -->
+    <figure class="foto-secao">
+      <img src="/assets/funil.jpg" alt="Dois vendedores numa mesa compartilhada revisam anotações juntos, com os notebooks virados para longe."
+           width="1600" height="1067" loading="lazy" decoding="async" />
+    </figure>
     <div class="grade">
       <div class="card"><h3>A etapa vem das atividades</h3><p>Cada tipo de atividade e cada status dizem o que provam — contato feito, demonstração, proposta, venda. O lead sobe sozinho quando a prova entra.</p></div>
       <div class="card"><h3>Nunca regride</h3><p>Uma ligação registrada depois da proposta não puxa o lead de volta. O funil só avança, e sair dele é decisão explícita.</p></div>
@@ -349,6 +376,22 @@ details p{margin:14px 0 0;color:var(--tinta-2);max-width:70ch}
   </div>
 </section>
 
+<section id="preco">
+  <div class="wrap rev">
+    <span class="olho">Preço</span>
+    <h2>R$ 39 por usuário, por mês.</h2>
+    <p class="lead">Sozinho, você usa grátis. Paga quando o time cresce — por vendedor que usa o sistema, sem cobrar por lead, por mensagem ou por integração. Sem fidelidade.</p>
+    <div class="grade">
+      <div class="card"><h3>1 usuário</h3><p>Grátis. O funil, a próxima ação sugerida, o WhatsApp a partir do lead e o painel — tudo, para quem vende sozinho.</p></div>
+      <div class="card"><h3>Time</h3><p>R$ 39 por usuário, por mês. Distribuição de leads no time, aviso de lead sem contato e o gestor vendo o funil de todos.</p></div>
+      <div class="card"><h3>O que não custa à parte</h3><p>Webhook e API, importação de planilha por IA e a sugestão de próxima ação já estão no preço. A conta é aberta com a gente, numa conversa.</p></div>
+    </div>
+    <div class="acoes">
+      <a class="btn" href="https://wa.me/5562985673142?text=Quero%20come%C3%A7ar%20no%20vendeaqui">Começar pelo WhatsApp</a>
+    </div>
+  </div>
+</section>
+
 <!-- Capítulo de honestidade: quem lê só a home precisa sair sabendo destes limites. -->
 <section id="limites" class="escuro">
   <div class="wrap rev">
@@ -386,6 +429,9 @@ details p{margin:14px 0 0;color:var(--tinta-2);max-width:70ch}
 
     <details><summary>Serve para o meu tipo de empresa?</summary>
       <p>Há modelos prontos para contabilidade, imobiliária, clínica de estética, consultório, administradora de condomínio, instaladores, portaria remota e mídia indoor, além de um genérico. O modelo só dá o ponto de partida: etapas, status e tipos de atividade são editáveis.</p></details>
+
+    <details><summary>Quanto custa?</summary>
+      <p>R$ 39 por usuário, por mês, e uma pessoa sozinha usa grátis. A cobrança é por vendedor que usa o sistema — não por lead, por mensagem ou por integração —, e não há fidelidade.</p></details>
 
     <details><summary>Como começo?</summary>
       <p>Pelo WhatsApp. Não existe cadastro pelo site: a nossa equipe abre a conta, cria os acessos do seu time e escolhe com você o modelo do seu mercado. Quem já tem conta entra pelo botão Entrar.</p></details>
