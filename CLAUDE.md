@@ -1,0 +1,32 @@
+# vendeaqui-site — www.vendeaqui.app
+
+Site estático (GitHub Pages) do **vendeaqui**, o CRM de vendas do ERP Seu Condomínio vendido
+com marca própria. Nasceu em 13/09/2026 a partir do `acompanhaobra-site`.
+
+- Marca, login e infra do produto: repo `denoww/seucondominio` →
+  `app/services/atendimento/ROADMAP.md` → "Marca vendeaqui" e `ROADMAP_multi_produto.md` §7.
+- Login: `https://app.vendeaqui.app/logar?no_layout=true` (fonte da verdade: `.login`).
+- WhatsApp comercial: `.whatsapp`. Domínio: `CNAME`.
+
+## ⛔ A régua da copy
+
+**O site só promete o que o código do ERP sustenta.** A lista do que NÃO existe está no
+comentário `⛔ NÃO PROMETER` no topo do `index.html` e é cobrada por
+`.github/scripts/seo.py` (PROIBIDAS). Antes de acrescentar um recurso à página, confira
+no código do ERP (`app/services/atendimento/`) — roadmap não é produto.
+
+Resumo do que ficou de fora de propósito (13/09/2026): app nas lojas/PWA offline, proposta em
+PDF e assinatura, WhatsApp oficial ou "sem risco de bloqueio", Instant Form do Facebook para
+qualquer empresa, IA de ligação telefônica, pontuação de lead e jornadas (chave desligada),
+Google Agenda, autocadastro, **preço** (não definido) e qualquer número de clientes.
+
+## Regras que herdamos das irmãs
+
+- **Sem analytics, fonte ou script de terceiro** — a política de privacidade afirma isso.
+- **Interface é HTML/CSS, não imagem gerada** (o Kanban da home), e **sempre rotulada**
+  "Exemplo ilustrativo".
+- `sitemap.xml` é gerado pelo CI a partir dos canonicals; não edite à mão.
+- Sem blog por enquanto: `SITEMAP_BLOG = None` no `seo.py` e o `robots.txt` aponta só o
+  `sitemap.xml`. A ordem de ligar o blog está no §7.2 do roadmap do ERP.
+- **Publicação se prova por conteúdo**, não pelo check verde:
+  `diff <(curl -s https://www.vendeaqui.app/index.html) index.html`
