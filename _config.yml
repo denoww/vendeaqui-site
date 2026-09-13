@@ -15,6 +15,11 @@ url: "https://www.vendeaqui.app"
 
 exclude:
   - CLAUDE.md
+  # fontes do livreto — só o `livreto/index.html` gerado e o `livreto.pdf` são publicados
+  - livreto/CLAUDE.md
+  - livreto/content.py
+  - livreto/build.py
+  - livreto/build_pdf.sh
   - README.md
   - Gemfile
   - Gemfile.lock
