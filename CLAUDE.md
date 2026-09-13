@@ -18,7 +18,13 @@ no código do ERP (`app/services/atendimento/`) — roadmap não é produto.
 Resumo do que ficou de fora de propósito (13/09/2026): app nas lojas/PWA offline, proposta em
 PDF e assinatura, WhatsApp oficial ou "sem risco de bloqueio", Instant Form do Facebook para
 qualquer empresa, IA de ligação telefônica, pontuação de lead e jornadas (chave desligada),
-Google Agenda, autocadastro, **preço** (não definido) e qualquer número de clientes.
+Google Agenda, autocadastro e qualquer número de clientes.
+
+**Preço canônico (13/09/2026): R$ 39 por usuário/mês, grátis para 1 usuário, sem fidelidade** —
+abaixo do mercado medido (Agendor R$ 59, RD Station CRM R$ 73, mediana da entrada paga ≈ R$ 137).
+Mora em três lugares que mudam JUNTOS: `PRECO_CANONICO` no `seo.py` (reprova qualquer outra cifra
+na copy e `offers.price` divergente no JSON-LD), a KB do chatbot no ERP
+(`db/seeds/chatbot/kb_produto_vendeaqui.json`) e o `precos` do blog (`Auto::Marcas::Vendeaqui`).
 
 ## Regras que herdamos das irmãs
 
