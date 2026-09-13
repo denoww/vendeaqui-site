@@ -1,0 +1,43 @@
+# SEO + copy: gera o sitemap a partir dos canonicals e reprova promessa que o ERP não sustenta.
+#
+# O script vive em .github/scripts/seo.py (o Pages não publica .github). No push para main
+# o sitemap regenerado é commitado pelo bot; no PR só confere.
+#
+# ⚠️ `git status --porcelain`, NÃO `git diff --quiet`: o diff não vê arquivo NOVO
+# (untracked), e o primeiro sitemap nunca seria commitado — bug herdado do blueprint.
+
+name: seo (sitemap + copy)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # lastmod vem do git log de cada página
+
+      - name: Confere e gera o sitemap
+        run: python3 .github/scripts/seo.py --http
+
+      - name: Commita o sitemap (só no push para main)
+        if: github.event_name == 'push'
+        run: |
+          if [ -n "$(git status --porcelain -- sitemap.xml sitemap-index.xml)" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add sitemap.xml
+            [ -f sitemap-index.xml ] && git add sitemap-index.xml
+            git commit -m "chore(seo): sitemap regenerado"
+            git push
+          else
+            echo "sitemap sem mudança"
+          fi
