@@ -1,0 +1,94 @@
+# Guarda de consistência: WhatsApp, destino do login, ponte /entrar — e RESTO DE BLUEPRINT.
+#
+# POR QUE ISTO EXISTE
+# O site nasceu copiado do acompanhaobra-site. O guard herdado conferia só CONSISTÊNCIA
+# (todo link bate com o dotfile), não CORREÇÃO: trocar só `.whatsapp`/`.login` passaria
+# verde servindo o domínio, a copy e o JSON-LD da outra marca. O último step fecha isso.
+#
+# `.whatsapp`, `.login` e `CNAME` na raiz são as FONTES DA VERDADE (dotfiles não são
+# publicados pelo Pages). O HTML segue literal para manter a verificação
+#   diff <(curl -s https://www.vendeaqui.app/index.html) index.html
+
+name: guarda (contato e marca consistentes)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contato:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: O número canônico é bem formado
+        run: |
+          CANON=$(cat .whatsapp | tr -d '[:space:]')
+          echo "$CANON" | grep -qE '^55[0-9]{11}$' \
+            || { echo "::error::.whatsapp deve ser 55 + DDD + 9 dígitos, veio '$CANON'"; exit 1; }
+
+      - name: Todo link wa.me aponta para o número canônico
+        run: |
+          CANON=$(cat .whatsapp | tr -d '[:space:]')
+          FONTES=$(git ls-files '*.html' '*.py' '*.md')
+          ACHADOS=$(grep -Ioh 'wa\.me/[0-9]\{10,\}' $FONTES | sed 's|wa\.me/||' | sort -u | grep -v "^$CANON$" || true)
+          if [ -n "$ACHADOS" ]; then
+            echo "::error::wa.me divergente do .whatsapp ($CANON): $ACHADOS"; exit 1
+          fi
+
+      - name: O telefone do dado estruturado bate com o canônico
+        run: |
+          CANON=$(cat .whatsapp | tr -d '[:space:]')
+          RUINS=$(grep -rIoh '"telephone" *: *"[^"]*"' --include='*.html' . | grep -v "+$CANON" || true)
+          if [ -n "$RUINS" ]; then
+            echo "::error::JSON-LD com telefone que não é +$CANON: $RUINS"; exit 1
+          fi
+
+      - name: O destino do login é bem formado
+        run: |
+          CANON=$(cat .login | tr -d '[:space:]')
+          echo "$CANON" | grep -qE '^https://[a-z0-9.-]+/logar(\?no_layout=true)?$' \
+            || { echo "::error::.login deve ser https://<host>/logar, veio '$CANON'"; exit 1; }
+
+      - name: Todo destino de login aponta para o canônico
+        run: |
+          CANON=$(cat .login | tr -d '[:space:]')
+          FONTES=$(git ls-files '*.html' '*.py' '*.md')
+          ACHADOS=$(grep -Ioh 'https://[a-zA-Z0-9.-]*/logar[^"[:space:]>]*' $FONTES | sort -u | grep -vxF "$CANON" || true)
+          if [ -n "$ACHADOS" ]; then
+            echo "::error::destino de login divergente do .login ($CANON): $ACHADOS"; exit 1
+          fi
+
+      - name: A ponte /entrar existe e está linkada
+        run: |
+          test -f entrar.html || { echo "::error::entrar.html não existe"; exit 1; }
+          grep -q 'href="/entrar"' index.html || { echo "::error::index.html não linka /entrar"; exit 1; }
+
+      # CORREÇÃO, não só consistência: nenhum nome/domínio de marca IRMÃ pode sobrar em
+      # arquivo publicado, e todo canonical/og:url/@id aponta pro host do CNAME.
+      - name: Nenhum resto de blueprint (marca irmã) e host coerente com o CNAME
+        run: |
+          HOST=$(cat CNAME | tr -d '[:space:]')
+          PUBLICADOS=$(git ls-files '*.html' '*.json' '*.txt' '*.xml' '*.yml' | grep -v '^\.github/')
+          IRMAS=$(grep -IniE 'acompanhaobra|baterponto|atendeaqui|corpflix|seevia' $PUBLICADOS || true)
+          if [ -n "$IRMAS" ]; then
+            echo "::error::resto de marca irmã em arquivo publicado:"; echo "$IRMAS"; exit 1
+          fi
+          FORA=$(grep -Ioh -E '(rel="canonical" href|property="og:url" content|"@id"|"url") *[:=] *"https://[^/"]+' $(git ls-files '*.html') \
+                 | grep -oE 'https://[^/"]+' | sort -u | grep -vxF "https://$HOST" || true)
+          if [ -n "$FORA" ]; then
+            echo "::error::canonical/og:url/JSON-LD fora de https://$HOST: $FORA"; exit 1
+          fi
+          echo "sem resto de blueprint; hosts coerentes com $HOST"
+
+      - name: O destino do login está no ar?
+        run: |
+          CANON=$(cat .login | tr -d '[:space:]')
+          CODE=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 25 "$CANON" || echo 000)
+          [ "$CODE" = "200" ] && echo "login respondeu 200" \
+            || echo "::warning::destino do login ($CANON) respondeu $CODE"
