@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Só o sitemap deste site. Ainda NÃO há blog (blog.vendeaqui.app espera o preço público
+# do produto); quando houver e virar indexável, o índice (sitemap-index.xml) volta, na
+# ordem do ROADMAP_multi_produto.md §7.2 do ERP.
+Sitemap: https://www.vendeaqui.app/sitemap.xml
