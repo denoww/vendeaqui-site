@@ -28,6 +28,8 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parents[2]
 
 BASE = 'https://www.vendeaqui.app'
+# Preço público canônico, em reais por usuário/mês. Única cifra que a copy e o JSON-LD podem dizer.
+PRECO_CANONICO = '39'
 # Sem blog ainda (espera o preço público). Quando o blog existir E for virado para
 # indexável, preencha — a ORDEM está no ROADMAP_multi_produto.md §7.2 do ERP: flip no
 # ERP → deploy → este campo → sitemap do blog no Search Console. Preencher antes entrega
@@ -63,8 +65,11 @@ PROIBIDAS = [
      r'google\s+(agenda|calendar)|outlook\s+calendar'),
     ('autocadastro ou teste grátis',
      r'cadastre-se|teste\s+gr[áa]tis|comece\s+gr[áa]tis|crie\s+sua\s+conta|assine\s+agora'),
-    ('preço (não definido)',
-     r'R\$\s*\d'),
+    # Preço CANÔNICO (13/09/2026): R$ 39 por usuário/mês, grátis para 1 usuário. Qualquer outra
+    # cifra é reprovada — é a mesma lógica do `RegrasDeCopy.violacao_de_preco` do blog do ERP.
+    # ⚠️ Ao mudar o preço, mude PRECO_CANONICO aqui, a KB do chatbot e o `precos` do blog juntos.
+    ('preço diferente do canônico',
+     r'R\$\s*(?!' + '39' + r'(?![\d,.]))\d[\d.,]*'),  # ⚠️ o '39' literal tem que bater com PRECO_CANONICO (a lista vem antes da constante)
     ('certificação não confirmada',
      r'INPI|homologad\w+\s+(pelo|junto)|certificad\w+\s+pel[oa]'),
     ('garantia absoluta',
@@ -134,9 +139,19 @@ def confere_faq(arq: Path, bruto: str, visivel: str) -> None:
         return
 
     bruto_json = m.group(1)
-    for proibido in ('aggregateRating', '"review"', 'interactionStatistic', '"offers"'):
+    for proibido in ('aggregateRating', '"review"', 'interactionStatistic'):
         if proibido in bruto_json:
-            falha(f'{arq.name}: {proibido} em dado estruturado — prova social fabricada ou preço inexistente')
+            falha(f'{arq.name}: {proibido} em dado estruturado — prova social fabricada')
+
+    # O `offers` do dado estruturado tem que dizer o MESMO preço da copy. Preço divergente no
+    # JSON-LD é o que o Google mostra no resultado — e ninguém lê o JSON pra perceber.
+    for no in grafo.get('@graph', [grafo]):
+        oferta = no.get('offers')
+        if oferta is None:
+            continue
+        for o in (oferta if isinstance(oferta, list) else [oferta]):
+            if str(o.get('price')) not in (PRECO_CANONICO, '0'):
+                falha(f'{arq.name}: offers.price {o.get("price")!r} diferente do canônico R$ {PRECO_CANONICO}')
 
     for no in grafo.get('@graph', [grafo]):
         if no.get('@type') != 'FAQPage':
