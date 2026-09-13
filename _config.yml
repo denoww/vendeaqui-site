@@ -1,0 +1,22 @@
+# Config do Jekyll — este site é HTML ESTÁTICO ESCRITO À MÃO, e continua sendo.
+#
+# POR QUE ISTO EXISTE
+# O GitHub Pages publica tudo que não começa com `.` ou `_`. Sem este arquivo, o
+# playbook interno (CLAUDE.md, com as regras de copy) ficaria SERVIDO em texto plano.
+#
+# O QUE ISTO NÃO FAZ
+# Não transforma as páginas em template: arquivo SEM front matter é copiado VERBATIM,
+# então a verificação de publicação continua valendo:
+#   diff <(curl -s https://www.vendeaqui.app/index.html) index.html
+#
+# Sem `plugins:` de propósito — o sitemap é gerado por CI (workflow `seo.yml`).
+
+url: "https://www.vendeaqui.app"
+
+exclude:
+  - CLAUDE.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
