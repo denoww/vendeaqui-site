@@ -462,8 +462,7 @@ details p{margin:14px 0 0;color:var(--tinta-2);max-width:70ch}
   </div>
 </footer>
 
-<!-- Sem `offers` de propósito: não há preço público definido (e inventar um seria
-     promessa indexada). Sem `aggregateRating`: não fabricamos prova social. -->
+<!-- `offers` diz o preço canônico da copy (o seo.py reprova se divergir). Sem `aggregateRating`: não fabricamos prova social. -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -491,6 +490,7 @@ details p{margin:14px 0 0;color:var(--tinta-2);max-width:70ch}
       "url":"https://www.vendeaqui.app/",
       "inLanguage":"pt-BR",
       "publisher":{"@id":"https://www.vendeaqui.app/#org"},
+      "offers":{"@type":"Offer","price":"39","priceCurrency":"BRL","description":"Por usuário por mês. Grátis para 1 usuário, sem fidelidade."},
       "featureList":[
         "Funil de vendas que avança a partir das atividades e dos status registrados",
         "Etapas, status e tipos de atividade editáveis por empresa",
