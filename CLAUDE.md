@@ -28,5 +28,11 @@ Google Agenda, autocadastro, **preço** (não definido) e qualquer número de cl
 - `sitemap.xml` é gerado pelo CI a partir dos canonicals; não edite à mão.
 - Sem blog por enquanto: `SITEMAP_BLOG = None` no `seo.py` e o `robots.txt` aponta só o
   `sitemap.xml`. A ordem de ligar o blog está no §7.2 do roadmap do ERP.
+- **Search Console** (13/09/2026): propriedade de **prefixo de URL** `https://www.vendeaqui.app/`,
+  conta rodrigo@seucondominio.com.br, verificada pela **tag** `google-site-verification` no `<head>`
+  do `index.html`, com `sitemap.xml` enviado. ⛔ Não remova a tag num refactor: o Google
+  desverifica a propriedade. Foi tag e não arquivo `google*.html` porque o `seo.py` varre todo
+  `.html` e reprovaria uma página sem description/h1/canonical; e não foi propriedade de domínio
+  porque a mudança de DNS foi barrada pelo modo automático do Claude Code.
 - **Publicação se prova por conteúdo**, não pelo check verde:
   `diff <(curl -s https://www.vendeaqui.app/index.html) index.html`
