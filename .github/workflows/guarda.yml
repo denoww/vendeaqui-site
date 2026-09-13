@@ -59,7 +59,10 @@ jobs:
         run: |
           CANON=$(cat .login | tr -d '[:space:]')
           FONTES=$(git ls-files '*.html' '*.py' '*.md')
-          ACHADOS=$(grep -Ioh 'https://[a-zA-Z0-9.-]*/logar[^"[:space:]>]*' $FONTES | sort -u | grep -vxF "$CANON" || true)
+          # A classe de parada inclui crase e `)`: no CLAUDE.md a URL vive dentro de `código`
+          # e de link markdown — sem isso o próprio literal certo casava com a crase junto e
+          # o guard reprovava a doc (falhou assim no 1º push, 13/09/2026).
+          ACHADOS=$(grep -Ioh 'https://[a-zA-Z0-9.-]*/logar[^"[:space:]>`)]*' $FONTES | sort -u | grep -vxF "$CANON" || true)
           if [ -n "$ACHADOS" ]; then
             echo "::error::destino de login divergente do .login ($CANON): $ACHADOS"; exit 1
           fi
