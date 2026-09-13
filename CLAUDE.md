@@ -26,6 +26,12 @@ Mora em três lugares que mudam JUNTOS: `PRECO_CANONICO` no `seo.py` (reprova qu
 na copy e `offers.price` divergente no JSON-LD), a KB do chatbot no ERP
 (`db/seeds/chatbot/kb_produto_vendeaqui.json`) e o `precos` do blog (`Auto::Marcas::Vendeaqui`).
 
+## Livreto (`/livreto/` + `/livreto.pdf`)
+
+Peça funda de vendas, nascida em 13/09/2026. **Edite `livreto/content.py` e dê push** — o CI
+`livreto.yml` regenera o HTML e o PDF e commita o espelho. Playbook e as 4 travas do
+`@media print` em `livreto/CLAUDE.md`. O `seo.py` varre o livreto com a mesma régua da home.
+
 ## Regras que herdamos das irmãs
 
 - **Sem analytics, fonte ou script de terceiro** — a política de privacidade afirma isso.
