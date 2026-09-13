@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Entrar — vendeaqui</title>
+<meta name="description" content="Acesse o vendeaqui com o e-mail e a senha da sua empresa." />
+<!-- noindex: é uma ponte para o login, não conteúdo. `follow` porque os links daqui
+     (home, privacidade) são caminhos legítimos que o crawler deve continuar seguindo. -->
+<meta name="robots" content="noindex, follow" />
+<!-- FALLBACK sem JavaScript, com 1s de atraso: o `location.replace` do rodapé roda antes
+     e não empilha entrada no histórico (o meta refresh empilha e prende o "voltar").
+     ⚠️ A URL aparece 2× nesta página (aqui e no href do botão). A FONTE DA VERDADE é o
+     dotfile `.login` na raiz, e o workflow `guarda.yml` barra o push se divergir. -->
+<meta http-equiv="refresh" content="1;url=https://app.vendeaqui.app/logar?no_layout=true" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#000000" />
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    background:#f5f5f7;color:#1d1d1f;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;padding:24px;
+  }
+  main{max-width:560px;text-align:center}
+  .marca{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:17px;letter-spacing:-.02em;color:#1d1d1f;text-decoration:none;margin-bottom:32px}
+  .marca img{width:24px;height:24px;border-radius:6px}
+  .marca .tld{color:#15803D}
+  h1{font-size:clamp(28px,5vw,40px);line-height:1.1;letter-spacing:-.015em;font-weight:600;margin:0 0 16px}
+  p.sub{font-size:19px;line-height:1.5;color:#6e6e73;margin:0 0 32px}
+  a.btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:980px;padding:12px 22px;
+    font-size:17px;font-weight:400;text-decoration:none;background:#15803D;color:#fff;transition:background .1s linear;
+  }
+  a.btn:hover{background:#166534}
+  .giro{width:18px;height:18px;border-radius:50%;flex-shrink:0;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:gira .7s linear infinite}
+  @keyframes gira{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){ .giro{display:none} }
+  small{display:block;margin-top:40px;font-size:14px;color:#6e6e73;line-height:1.6}
+  small a{color:#6e6e73}
+  a:focus-visible{outline:3px solid #15803D;outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+  <main>
+    <a class="marca" href="/">
+      <img src="/assets/brand-mark.png" width="24" height="24" alt="" />
+      <span>vendeaqui<span class="tld">.app</span></span>
+    </a>
+    <h1>Entrando no sistema…</h1>
+    <p class="sub">Estamos abrindo a tela de login. Se não acontecer em alguns segundos, use o botão abaixo.</p>
+    <a class="btn" id="ir" href="https://app.vendeaqui.app/logar?no_layout=true">
+      <span class="giro" aria-hidden="true"></span>
+      Continuar para o login
+    </a>
+    <small>
+      Entre com o e-mail e a senha da sua empresa.<br />
+      Ainda não é cliente? <a href="/">Conheça o vendeaqui</a> · <a href="/privacidade">Privacidade</a>
+    </small>
+  </main>
+<script>
+  // `replace` (não `href =`): não empilha esta ponte no histórico.
+  location.replace(document.getElementById('ir').href);
+</script>
+</body>
+</html>
