@@ -190,9 +190,12 @@ NAO_FAZ = [
     ("Não tem app para instalar",
      "Funciona no navegador, inclusive no do celular, com o quadro e o botão para mover o lead de "
      "etapa. Mas não há aplicativo para baixar nem modo offline.", ""),
-    ("Não gera proposta em PDF",
-     "A proposta é registrada como atividade no lead e move o funil. Montar o documento e colher "
-     "as assinaturas ainda fica fora do sistema.", ""),
+    # L22 (14/09/2026): o PDF da proposta existe, mas só no modelo de administradora de condomínio
+    # (o layout fala de administração condominial e o fieldset só abre nessa vertical).
+    ("O documento da proposta é só de administradora",
+     "Fora do modelo de administradora de condomínio, o sistema não gera proposta em PDF: a proposta "
+     "é registrada como atividade no lead e move o funil. Colher assinaturas fica fora do sistema em "
+     "qualquer modelo.", ""),
     ("WhatsApp não é o canal oficial da Meta",
      "As mensagens automáticas saem do número da sua empresa por um conector não oficial. O limite "
      "diário existe para reduzir o risco de bloqueio — mas o risco não é zero.", ""),
