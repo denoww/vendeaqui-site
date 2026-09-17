@@ -38,8 +38,12 @@ Peça funda de vendas, nascida em 13/09/2026. **Edite `livreto/content.py` e dê
 - **Interface é HTML/CSS, não imagem gerada** (o Kanban da home), e **sempre rotulada**
   "Exemplo ilustrativo".
 - `sitemap.xml` é gerado pelo CI a partir dos canonicals; não edite à mão.
-- Sem blog por enquanto: `SITEMAP_BLOG = None` no `seo.py` e o `robots.txt` aponta só o
-  `sitemap.xml`. A ordem de ligar o blog está no §7.2 do roadmap do ERP.
+- **Blog indexável desde 16/09/2026** (`blog.vendeaqui.app`, servido pelo ERP): `SITEMAP_BLOG` no
+  `seo.py` faz o CI gerar o `sitemap-index.xml`, e o `robots.txt` aponta o índice primeiro.
+- **Search Console tem DUAS propriedades**: a de prefixo `https://www.vendeaqui.app/` (tag no
+  `index.html`) e, desde 17/09/2026, a de **domínio** `vendeaqui.app` (TXT `google-site-verification`
+  no apex, ao lado do SPF do SES). Só a de domínio cobre o `blog.` — é nela que o sitemap do blog
+  está enviado. ⛔ Ao mexer no TXT do apex, mantenha os DOIS valores (SPF e verificação).
 - **Search Console** (13/09/2026): propriedade de **prefixo de URL** `https://www.vendeaqui.app/`,
   conta rodrigo@seucondominio.com.br, verificada pela **tag** `google-site-verification` no `<head>`
   do `index.html`, com `sitemap.xml` enviado. ⛔ Não remova a tag num refactor: o Google
