@@ -35,7 +35,7 @@ PRECO_CANONICO = '39'
 # ERP → deploy → este campo → sitemap do blog no Search Console. Preencher antes entrega
 # ao Google um sitemap de páginas `noindex`.
 # ⚠️ SEM `.xml`: a rota do Rails é `/sitemap`; `/sitemap.xml` responde 301.
-SITEMAP_BLOG = None
+SITEMAP_BLOG = 'https://blog.vendeaqui.app/sitemap'  # blog indexável desde 16/09/2026
 
 PROIBIDAS = [
     ('prova social inventada',
