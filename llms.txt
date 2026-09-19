@@ -1,0 +1,44 @@
+# vendeaqui.app
+
+> O funil anda sozinho.
+
+Dono de pequena empresa que vende por relacionamento e gestor de time comercial de 1 a 20
+vendedores: contabilidade, imobiliária, clínica e consultório, instalador, prestador de
+serviço, administradora de condomínio. Dor comum: lead chegando por WhatsApp e formulário,
+ninguém sabe em que etapa cada um está, e o CRM que já tentaram virou planilha abandonada.
+
+## O que o produto faz
+- O funil anda sozinho: tipos de atividade e status declaram o que provam (contato, demonstração, proposta, venda) e o lead avança quando a prova é registrada.
+- O funil nunca regride, e "não atendeu" não marca o lead como perdido — só um status escolhido por uma pessoa encerra a venda.
+- Lead fora do perfil sai separado dos perdidos, para a taxa de conversão medir vendas.
+- Etapas, status e tipos de atividade são editáveis por empresa, com modelos prontos por mercado.
+- A próxima ação sugerida por IA só é gerada quando alguém clica, e o texto pode ser editado antes de enviar.
+- O botão do lead abre o WhatsApp com a mensagem pronta ou uma conversa nova no atendimento.
+- Aviso de lead sem primeiro contato para o dono e depois para o gestor, contando só horário útil.
+- Leads entram por conversa no chatbot, webhook do site, API e importação de planilha/PDF/foto por IA.
+- Distribuição automática para o vendedor com menos leads abertos, ou manual.
+- Painel de vendas com conversão, tempo médio, funil, origem e mapa dos leads por cidade.
+- Preço: R$ 39 por usuário/mês, grátis para 1 usuário, sem fidelidade.
+
+## O que o produto NÃO faz
+- NÃO existe app nas lojas nem modo offline — funciona no navegador, inclusive no celular.
+- NÃO gera proposta em PDF nem colhe assinatura digital.
+- O WhatsApp automático sai do número da empresa por conector NÃO oficial — NÃO dizer "API oficial" nem "sem risco de bloqueio".
+- NÃO recebe leads do Instant Form do Facebook/Instagram para qualquer empresa.
+- A IA NÃO analisa ligação telefônica (só reunião online transcrita).
+- NÃO sincroniza com Google Agenda e NÃO faz e-mail marketing.
+- NÃO existe autocadastro nem teste grátis por botão: a conta é aberta pela equipe, numa conversa.
+- NÃO temos número de clientes nem de conversão média para divulgar — o produto é novo.
+
+## Preço
+- Por usuário, por mês. Sem cobrar por lead, por mensagem ou por integração. Sem fidelidade.
+- grátis para 1 usuário
+- R$ 39 por usuário/mês
+
+## Links
+- Site: https://www.vendeaqui.app/
+- Blog: https://blog.vendeaqui.app/
+
+---
+Gerado de `app/services/auto/marcas/vendeaqui.rb` no repositório do ERP
+(`rake "marcas:gerar_llms_txt[vendeaqui]"`). NÃO edite à mão: mude o registry e gere de novo.
