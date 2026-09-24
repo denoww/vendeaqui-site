@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Antes de escolher um CRM de vendas</title>
+<meta name="description" content="As perguntas que decidem a escolha de um CRM: quem move o funil, o que conta como lead perdido, de onde vêm os leads e quanto custa." />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://www.vendeaqui.app/perguntas-antes-de-escolher" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="vendeaqui" />
+<meta property="og:title" content="Antes de escolher um CRM de vendas" />
+<meta property="og:description" content="As perguntas que decidem a escolha de um CRM: quem move o funil, o que conta como lead perdido, de onde vêm os leads e quanto custa." />
+<meta property="og:url" content="https://www.vendeaqui.app/perguntas-antes-de-escolher" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:image" content="https://www.vendeaqui.app/assets/og.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Antes de escolher um CRM de vendas" />
+<meta name="twitter:description" content="As perguntas que decidem a escolha de um CRM: quem move o funil, o que conta como lead perdido, de onde vêm os leads e quanto custa." />
+<meta name="twitter:image" content="https://www.vendeaqui.app/assets/og.jpg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=Azeret+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  /* mesmo sistema visual do index: superfícies apple, SF Pro/Inter, pill, 44px de nav */
+  :root{
+    --branco:#fff; --nevoa:#f5f5f7;
+    --tinta:#1d1d1f; --tinta-2:#6e6e73;
+    --roxo:#16A34A; --roxo-esc:#15803D;
+    --linha:rgba(0,0,0,.12); --max:760px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--branco);color:var(--tinta);
+    font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter',system-ui,sans-serif;
+    font-size:17px;line-height:1.4705882353;letter-spacing:-.022em;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  }
+  a{color:var(--roxo-esc);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:2px}
+  :focus-visible{outline:3px solid var(--roxo);outline-offset:3px;border-radius:6px}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  header.nav{
+    position:sticky;top:0;z-index:50;height:52px;
+    border-bottom:1px solid rgba(0,0,0,.08);
+    background:rgba(255,255,255,.72);
+    backdrop-filter:saturate(180%) blur(20px);
+    -webkit-backdrop-filter:saturate(180%) blur(20px);
+  }
+  .nav-in{max-width:var(--max);margin:0 auto;padding:0 24px;height:52px;display:flex;align-items:center}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:17px;letter-spacing:-.02em;color:var(--tinta)}
+  .brand:hover{text-decoration:none}
+  .brand img{width:24px;height:24px;border-radius:6px;display:block}
+  .brand .tld{color:var(--roxo)}
+
+  main{padding:72px 0 96px}
+  /* eyebrow grande e semibold, como nas feature pages */
+  .eyebrow{display:block;font-size:21px;font-weight:600;letter-spacing:.011em;line-height:1.19;color:var(--roxo)}
+  h1{font-size:clamp(40px,5vw,56px);font-weight:600;letter-spacing:-.005em;line-height:1.0714;margin-top:8px}
+  .atualizado{margin-top:16px;font-size:14px;color:var(--tinta-2);letter-spacing:-.016em}
+  .intro{margin-top:28px;font-size:21px;line-height:1.381;letter-spacing:.011em;color:var(--tinta-2)}
+  h2{font-size:28px;font-weight:600;letter-spacing:.007em;line-height:1.1428;
+     margin:52px 0 0;padding-top:32px;border-top:1px solid var(--linha)}
+  h3{font-size:19px;font-weight:600;letter-spacing:.012em;margin-top:26px}
+  p{margin-top:14px;color:var(--tinta)}
+  p.sub{color:var(--tinta-2);font-size:15px}
+  ul{margin:16px 0 0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+  li{padding-left:22px;position:relative;color:var(--tinta)}
+  li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--roxo)}
+  li b{font-weight:600}
+  /* card sem sombra: separa por contraste, como na apple */
+  .card{background:var(--nevoa);border-radius:18px;padding:26px 28px;margin-top:18px}
+  .mono{font-family:'Azeret Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;letter-spacing:0}
+  footer{border-top:1px solid var(--linha);background:var(--nevoa);padding:40px 0;margin-top:80px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--tinta-2);font-size:13px}
+  @media(max-width:600px){ .wrap,.nav-in{padding:0 20px} main{padding:52px 0 72px} }
+  .btn-optout{font:inherit;font-size:15px;font-weight:600;color:var(--branco);background:var(--roxo-esc);
+    border:0;border-radius:10px;padding:11px 18px;cursor:pointer}
+  .btn-optout:hover{background:var(--roxo)}
+  .btn-optout[disabled]{background:var(--tinta-2);cursor:default}
+  .q{border-top:1px solid var(--linha);padding:28px 0}
+  .q h2{font-size:21px;line-height:1.19;letter-spacing:.011em;margin:0 0 10px}
+  .q p{color:var(--tinta-2)}
+  .fecho{margin-top:40px;padding:24px;background:var(--nevoa);border-radius:18px}
+</style>
+
+<!-- Medição — mesma tag da home. Aqui ela também precisa existir para o botão de
+     opt-out (seção "Visitantes deste site") poder desligá-la nesta mesma página. -->
+<script>
+  try { if (localStorage.getItem('sem-analytics') === '1') window['ga-disable-G-53CQRHJC5D'] = true; } catch (e) {}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-53CQRHJC5D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-53CQRHJC5D', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+  document.addEventListener('click', function (e) {
+    var alvo = e.target;
+    if (!alvo || !alvo.closest) return;
+    var a = alvo.closest('a[href*="wa.me"]');
+    if (!a) return;
+    gtag('event', 'contato_whatsapp', { pagina: location.pathname, cta: a.className || 'sem-classe' });
+  });
+</script>
+</head>
+
+<body>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/"><img src="/assets/brand-mark.png" width="28" height="28" alt="" /><span>vendeaqui<span class="tld">.app</span></span></a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <span class="eyebrow">Para quem está decidindo</span>
+    <h1>Antes de escolher um CRM de vendas</h1>
+
+    <p class="intro">
+      Escolher um CRM é escolher quem move o funil: o vendedor, arrastando o cartão, ou a prova de que alguma coisa aconteceu. As perguntas abaixo são as que mudam essa resposta — com o que o vendeaqui faz, e também o que ele não faz.
+    </p>
+
+      <div class="q">
+        <h2>Quem move o lead de etapa?</h2>
+        <p>O trabalho registrado. Cada tipo de atividade e cada status declara o que prova — contato, demonstração, proposta, venda — e o lead avança quando a prova entra. Ninguém arrasta cartão para o funil parecer melhor do que está.</p>
+      </div>
+
+      <div class="q">
+        <h2>O funil pode voltar?</h2>
+        <p>Não. O funil nunca regride, e isso é decisão de produto: etapa que anda para trás é o que transforma relatório de conversão em opinião.</p>
+      </div>
+
+      <div class="q">
+        <h2>&quot;Não atendeu&quot; marca o lead como perdido?</h2>
+        <p>Não. Só um status escolhido por uma pessoa encerra a venda. E lead fora do perfil sai separado dos perdidos, para a taxa de conversão medir vendas, e não desqualificação.</p>
+      </div>
+
+      <div class="q">
+        <h2>Dá para adaptar as etapas ao meu mercado?</h2>
+        <p>Sim. Etapas, status e tipos de atividade são editáveis por empresa, com modelos prontos por mercado para não começar do zero.</p>
+      </div>
+
+      <div class="q">
+        <h2>De onde entram os leads?</h2>
+        <p>De conversa no chatbot, webhook do site, API e importação — planilha, PDF ou foto lida por IA. A distribuição pode ser automática, para o vendedor com menos leads abertos, ou manual.</p>
+      </div>
+
+      <div class="q">
+        <h2>O que impede um lead de ficar esquecido?</h2>
+        <p>Um aviso de lead sem primeiro contato vai para o dono do lead e, depois, para o gestor, contando só horário útil — não adianta cobrar resposta às duas da manhã.</p>
+      </div>
+
+      <div class="q">
+        <h2>A IA responde pelo vendedor?</h2>
+        <p>Não. A próxima ação sugerida só é gerada quando alguém clica, e o texto pode ser editado antes de enviar. O botão do lead abre o WhatsApp com a mensagem pronta, ou uma conversa nova no atendimento.</p>
+      </div>
+
+      <div class="q">
+        <h2>O WhatsApp automático sai do número da empresa?</h2>
+        <p>Sim, por um conector de mercado — não pelo canal oficial da Meta. Dizemos na frente porque muda a conversa sobre risco de bloqueio do número.</p>
+      </div>
+
+      <div class="q">
+        <h2>O que o sistema NÃO faz?</h2>
+        <p>Não tem app nas lojas nem modo offline (funciona no navegador, inclusive no do celular), não gera proposta em PDF nem colhe assinatura, não sincroniza com o Google Agenda, não faz e-mail marketing e não analisa ligação telefônica — só reunião online transcrita. Também não temos número de clientes nem de conversão média para divulgar.</p>
+      </div>
+
+      <div class="q">
+        <h2>Como se abre uma conta?</h2>
+        <p>Numa conversa com a equipe: não existe autocadastro nem teste grátis por botão. O preço é R$ 39 por usuário/mês, grátis para 1 usuário, sem cobrar por lead, por mensagem ou por integração, e sem fidelidade.</p>
+      </div>
+
+    <div class="fecho">
+      <p>
+        Ficou alguma pergunta que não está aqui?
+        <a href="https://wa.me/5562985673142?text=Ol%C3%A1%21%20Quero%20conhecer%20o%20vendeaqui." target="_blank" rel="noopener">mande no WhatsApp</a>
+        — respondemos inclusive o que o sistema não resolve.
+      </p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 vendeaqui · CRM de vendas</span>
+    <a href="/">← Voltar ao site</a>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quem move o lead de etapa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O trabalho registrado. Cada tipo de atividade e cada status declara o que prova — contato, demonstração, proposta, venda — e o lead avança quando a prova entra. Ninguém arrasta cartão para o funil parecer melhor do que está."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O funil pode voltar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. O funil nunca regride, e isso é decisão de produto: etapa que anda para trás é o que transforma relatório de conversão em opinião."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "\"Não atendeu\" marca o lead como perdido?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. Só um status escolhido por uma pessoa encerra a venda. E lead fora do perfil sai separado dos perdidos, para a taxa de conversão medir vendas, e não desqualificação."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Dá para adaptar as etapas ao meu mercado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Etapas, status e tipos de atividade são editáveis por empresa, com modelos prontos por mercado para não começar do zero."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "De onde entram os leads?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De conversa no chatbot, webhook do site, API e importação — planilha, PDF ou foto lida por IA. A distribuição pode ser automática, para o vendedor com menos leads abertos, ou manual."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que impede um lead de ficar esquecido?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Um aviso de lead sem primeiro contato vai para o dono do lead e, depois, para o gestor, contando só horário útil — não adianta cobrar resposta às duas da manhã."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A IA responde pelo vendedor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. A próxima ação sugerida só é gerada quando alguém clica, e o texto pode ser editado antes de enviar. O botão do lead abre o WhatsApp com a mensagem pronta, ou uma conversa nova no atendimento."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O WhatsApp automático sai do número da empresa?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim, por um conector de mercado — não pelo canal oficial da Meta. Dizemos na frente porque muda a conversa sobre risco de bloqueio do número."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que o sistema NÃO faz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não tem app nas lojas nem modo offline (funciona no navegador, inclusive no do celular), não gera proposta em PDF nem colhe assinatura, não sincroniza com o Google Agenda, não faz e-mail marketing e não analisa ligação telefônica — só reunião online transcrita. Também não temos número de clientes nem de conversão média para divulgar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como se abre uma conta?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Numa conversa com a equipe: não existe autocadastro nem teste grátis por botão. O preço é R$ 39 por usuário/mês, grátis para 1 usuário, sem cobrar por lead, por mensagem ou por integração, e sem fidelidade."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>
