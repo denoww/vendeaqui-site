@@ -38,6 +38,7 @@ ninguém sabe em que etapa cada um está, e o CRM que já tentaram virou planilh
 ## Links
 - Site: https://www.vendeaqui.app/
 - Blog: https://blog.vendeaqui.app/
+- Perguntas antes de escolher: https://www.vendeaqui.app/perguntas-antes-de-escolher
 
 ---
 Gerado de `app/services/auto/marcas/vendeaqui.rb` no repositório do ERP
