@@ -41,3 +41,16 @@ jobs:
           else
             echo "sitemap sem mudança"
           fi
+
+      # Avisa o Bing das páginas que mudaram. O Bing é o índice que o ChatGPT consulta, e
+      # o assistente é de onde vêm ~50% das sessões das marcas — então isto não é
+      # capricho de SEO, é o canal principal. `continue-on-error` porque o site já está
+      # no ar quando este passo roda: ping falho não pode pintar o deploy de vermelho.
+      - name: Avisar o Bing (IndexNow)
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        # O SHA de ANTES do push: sem ele o script cairia em HEAD~1, que neste ponto é o
+        # commit do sitemap feito pelo bot — e o ping sairia vazio no push que criou a página.
+        env:
+          GITHUB_EVENT_BEFORE: ${{ github.event.before }}
+        run: python3 .github/scripts/indexnow.py
