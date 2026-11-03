@@ -460,16 +460,16 @@ def build():
             f'<a href="/privacidade">Privacidade</a></span>'
             f'<span>Livreto v{hoje} · {sha}</span></div></footer>')
 
-    desc = ("Livreto do vendeaqui: o CRM de vendas em que o funil anda a partir do que o time já "
-            "registra, com a próxima ação sugerida por IA, o WhatsApp a partir do lead e a entrada de "
-            f"leads por chatbot, site e planilha. R$ {C.PRECO} por usuário por mês, grátis para 1 usuário.")
+    # ≤160 caracteres: o guard do seo.py reprova description maior (o buscador corta).
+    desc = ("Livreto do vendeaqui: CRM de vendas em que o funil anda com o que o time já registra, "
+            f"com a próxima ação sugerida por IA. R$ {C.PRECO} por usuário por mês.")
     url = f"{C.SITE}/livreto/"
     head = f'''<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Livreto do vendeaqui — CRM de vendas com funil que anda sozinho</title>
+<title>Livreto do vendeaqui — CRM com funil que anda sozinho</title>
 <meta name="description" content="{desc}">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="{url}">
