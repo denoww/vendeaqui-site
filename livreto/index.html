@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Livreto do vendeaqui — CRM com funil que anda sozinho</title>
-<meta name="description" content="Livreto do vendeaqui: funil que anda com o que o time registra, próxima ação por IA e WhatsApp a partir do lead. R$ 39 por usuário/mês, grátis para 1.">
+<meta name="description" content="Livreto do vendeaqui: CRM de vendas em que o funil anda com o que o time já registra, com a próxima ação sugerida por IA. R$ 39 por usuário por mês.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://www.vendeaqui.app/livreto/">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
@@ -13,12 +13,12 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="https://www.vendeaqui.app/livreto/">
 <meta property="og:title" content="Livreto do vendeaqui">
-<meta property="og:description" content="Livreto do vendeaqui: o CRM de vendas em que o funil anda a partir do que o time já registra, com a próxima ação sugerida por IA, o WhatsApp a partir do lead e a entrada de leads por chatbot, site e planilha. R$ 39 por usuário por mês, grátis para 1 usuário.">
+<meta property="og:description" content="Livreto do vendeaqui: CRM de vendas em que o funil anda com o que o time já registra, com a próxima ação sugerida por IA. R$ 39 por usuário por mês.">
 <meta property="og:image" content="https://www.vendeaqui.app/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication",
 "name":"vendeaqui","applicationCategory":"BusinessApplication","operatingSystem":"Web",
-"url":"https://www.vendeaqui.app/livreto/","inLanguage":"pt-BR","description":"Livreto do vendeaqui: o CRM de vendas em que o funil anda a partir do que o time já registra, com a próxima ação sugerida por IA, o WhatsApp a partir do lead e a entrada de leads por chatbot, site e planilha. R$ 39 por usuário por mês, grátis para 1 usuário.",
+"url":"https://www.vendeaqui.app/livreto/","inLanguage":"pt-BR","description":"Livreto do vendeaqui: CRM de vendas em que o funil anda com o que o time já registra, com a próxima ação sugerida por IA. R$ 39 por usuário por mês.",
 "offers":{"@type":"Offer","price":"39","priceCurrency":"BRL","description":"Por usuário por mês. Grátis para 1 usuário, sem fidelidade."},
 "featureList":["Funil de vendas que avança a partir das atividades e dos status registrados",
 "Etapas, status e tipos de atividade editáveis por empresa",
@@ -234,6 +234,44 @@ img{display:block;max-width:100%}
   @page{size:A4;margin:14mm}
 }
 </style>
+<script>try{if(navigator.webdriver||/HeadlessChrome/.test(navigator.userAgent))window['ga-disable-G-53CQRHJC5D']=true;}catch(e){}</script>
+<script>
+  // Opt-out de verdade: o botão em /privacidade grava esta chave. Precisa vir
+  // ANTES do gtag.js, senão a primeira medição já saiu.
+  try { if (localStorage.getItem('sem-analytics') === '1') window['ga-disable-G-53CQRHJC5D'] = true; } catch (e) {}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-53CQRHJC5D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-53CQRHJC5D', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+  document.addEventListener('click', function (e) {
+    var alvo = e.target;
+    if (!alvo || !alvo.closest) return;
+    var a = alvo.closest('a[href*="wa.me"]');
+    if (!a) return;
+    gtag('event', 'contato_whatsapp', {
+      pagina: location.pathname,
+      cta: a.className || 'sem-classe',
+      // De ONDE veio quem clicou. Medido em 17-18/09/2026: metade das sessoes
+      // deste site vem de chatgpt.com e 5% do Google, mas o lead sai por wa.me e
+      // o clique e o lead nunca se cruzavam. So o HOSTNAME: a URL inteira do
+      // referrer pode carregar termo de busca, que e dado de quem visita.
+      origem: (function () {
+        try { return document.referrer ? new URL(document.referrer).hostname : '(direto)'; }
+        catch (e) { return '(desconhecido)'; }
+      })()
+    });
+  });
+</script>
 </head>
 <body>
 <nav class="nav" aria-label="Navegação do livreto">
@@ -321,7 +359,7 @@ img{display:block;max-width:100%}
   <div class="btns"><a class="btn" href="/livreto.pdf" download="livreto-vendeaqui.pdf">
     Baixar o livreto (PDF)</a></div>
 </section>
-<footer class="foot"><div class="foot-in"><span>vendeaqui · CRM de vendas · um produto do Seu Condomínio · <a href="/privacidade">Privacidade</a></span><span>Livreto v16/09/2026 · ded9559</span></div></footer>
+<footer class="foot"><div class="foot-in"><span>vendeaqui · CRM de vendas · um produto do Seu Condomínio · <a href="/privacidade">Privacidade</a></span><span>Livreto v03/11/2026 · ded9559</span></div></footer>
 <script>
 (function(){
   if(matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)){

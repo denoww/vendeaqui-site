@@ -28,6 +28,28 @@ ROOT = pathlib.Path(__file__).resolve().parent
 REPO = ROOT.parent
 OUT  = REPO / "livreto" / "index.html"
 
+
+# ── GA4 no livreto (E1 do ROADMAP_growth_marketing.md, repo seucondominio — 03/11/2026)
+# Até aqui o livreto era a única página do site sem medição: quem chegava pelo PDF/QR e
+# chamava no WhatsApp não aparecia em lugar nenhum do GA4. O bloco é COPIADO do
+# index.html do site em tempo de build (fonte única: propriedade, opt-out de
+# /privacidade, consent e o listener de `contato_whatsapp`), em vez de duplicado aqui.
+# ☠️ O CI renderiza o livreto.pdf a partir deste MESMO HTML com Chrome headless: sem a
+# guarda abaixo, todo build contaria uma visita falsa na propriedade da marca.
+def ga4_do_site():
+    import re as _re
+    html = (REPO / "index.html").read_text(encoding="utf-8")
+    m = _re.search(
+        r'<script>\s*// Opt-out.*?</script>\s*'
+        r'<script async src="https://www\.googletagmanager\.com/gtag/js\?id=(G-[A-Z0-9]+)"></script>\s*'
+        r'<script>.*?</script>',
+        html, _re.S)
+    if not m:
+        raise SystemExit("livreto: bloco GA4 não encontrado no index.html — o livreto sairia sem medição")
+    guarda = ("<script>try{if(navigator.webdriver||/HeadlessChrome/.test(navigator.userAgent))"
+              f"window['ga-disable-{m.group(1)}']=true;}}catch(e){{}}</script>\n")
+    return guarda + m.group(0) + "\n"
+
 sp = importlib.util.spec_from_file_location("content", str(ROOT / "content.py"))
 C = importlib.util.module_from_spec(sp); sp.loader.exec_module(C)
 
@@ -438,16 +460,16 @@ def build():
             f'<a href="/privacidade">Privacidade</a></span>'
             f'<span>Livreto v{hoje} · {sha}</span></div></footer>')
 
-    desc = ("Livreto do vendeaqui: o CRM de vendas em que o funil anda a partir do que o time já "
-            "registra, com a próxima ação sugerida por IA, o WhatsApp a partir do lead e a entrada de "
-            f"leads por chatbot, site e planilha. R$ {C.PRECO} por usuário por mês, grátis para 1 usuário.")
+    # ≤160 caracteres: o guard do seo.py reprova description maior (o buscador corta).
+    desc = ("Livreto do vendeaqui: CRM de vendas em que o funil anda com o que o time já registra, "
+            f"com a próxima ação sugerida por IA. R$ {C.PRECO} por usuário por mês.")
     url = f"{C.SITE}/livreto/"
     head = f'''<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Livreto do vendeaqui — CRM de vendas com funil que anda sozinho</title>
+<title>Livreto do vendeaqui — CRM com funil que anda sozinho</title>
 <meta name="description" content="{desc}">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="{url}">
@@ -475,7 +497,7 @@ def build():
 </head>
 <body>
 '''
-    doc = head + body + "\n" + foot + "\n" + SCRIPT + "\n</body>\n</html>\n"
+    doc = head.replace("</head>", ga4_do_site() + "</head>", 1) + body + "\n" + foot + "\n" + SCRIPT + "\n</body>\n</html>\n"
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(doc)
     print(f"[livreto] {OUT} — {len(doc)//1024} KB · v{hoje} · {sha}")
