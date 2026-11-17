@@ -17,7 +17,7 @@ no código do ERP (`app/services/atendimento/`) — roadmap não é produto.
 
 Resumo do que ficou de fora de propósito (13/09/2026): app nas lojas/PWA offline, proposta em
 PDF e assinatura, WhatsApp oficial ou "sem risco de bloqueio", Instant Form do Facebook para
-qualquer empresa, IA de ligação telefônica, pontuação de lead e jornadas (chave desligada),
+qualquer empresa, IA de ligação telefônica, pontuação de lead,
 Google Agenda, autocadastro e qualquer número de clientes.
 
 **Preço canônico (13/09/2026): R$ 39 por usuário/mês, grátis para 1 usuário, sem fidelidade** —

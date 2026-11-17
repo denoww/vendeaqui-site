@@ -313,7 +313,24 @@ img{display:block;max-width:100%}
 
 /* ======================= IMPRESSÃO / PDF =======================
    As quatro travas do playbook. Mexer aqui quebra o PDF em silêncio. */
+/* vídeo do livreto (o mesmo bloco do livreto do SeuCondomínio): 16:9 no desktop, 9:16 no celular,
+   preload none; o poster só liga no <video> visível (JS do bloco). No PDF o vídeo some e fica o poster. */
+.lvvideo{max-width:var(--maxw);margin:0 auto;padding:0 24px clamp(56px,8vw,96px)}
+.lvvideo video{display:block;width:100%;aspect-ratio:16/9;border-radius:22px;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.18)}
+.lvvideo video.lvv-v{aspect-ratio:9/16}
+.lvv-v{display:none!important;max-width:420px;margin:0 auto}
+.lvv-cap{text-align:center;margin:0 0 16px}
+.lvv-print{display:none;text-align:center;color:var(--tinta-2);text-decoration:none}
+.lvv-pimg{display:block;width:100%;max-width:640px;aspect-ratio:16/9;margin:0 auto 10px;border-radius:14px;background:#000 center/cover no-repeat}
+@media(max-width:700px){.lvv-h{display:none!important}.lvv-v{display:block!important}}
+@media(orientation:landscape) and (max-height:500px){.lvvideo video.lvv-h{width:auto;max-width:100%;max-height:calc(100vh - 80px);margin:0 auto}}
+
 @media print{
+  /* vídeo: no papel some o player e fica o poster com o endereço */
+  .lvvideo video,.lvv-cap{display:none!important}
+  .lvv-print{display:block!important;break-inside:avoid}
+  .lvv-pimg{background-image:var(--lvv-poster)}
+  .lvvideo{padding:0 24px 20px!important}
   /* 1. sem isto o PDF sai EM BRANCO (o reveal nunca dispara sem scroll) */
   .rev{opacity:1!important;transform:none!important}
   /* 2. sem isto hero/CTA/fotos saem sem cor */
@@ -354,6 +371,24 @@ SCRIPT = """<script>
 </script>"""
 
 # --------------------------------------------------------------------- montagem
+# ── Vídeo do livreto (15/11/2026) — o mesmo `video_block` do livreto do SeuCondomínio
+# (livreto/build/build.py de lá). O vídeo é feito pelo motor do ERP (`livreto/video/<slug>/` + `video_engine/`)
+# e mora na CDN do ERP; aqui entra só o dict `VIDEO` do content.py (o que o `render.sh <slug> subir` imprime).
+def video_block():
+    v = getattr(C, "VIDEO", None)
+    if not v:
+        return ""
+    url = f"{C.SITE}/livreto/"
+    vid = lambda cls, src, poster, label: (f'<video class="{cls}" controls preload="none" playsinline data-poster="{poster}" aria-label="{label}">'
+                                           f'<source src="{src}" type="video/mp4"></video>')
+    return f'''<section class="lvvideo rev" aria-label="Vídeo do livreto">
+  <p class="lvv-cap"><span class="eyebrow">Veja em 1 minuto</span></p>
+  {vid("lvv-h", v["h"], v["poster_h"], "Vídeo de 1 minuto sobre o produto")}
+  {vid("lvv-v", v["v"], v["poster_v"], "Vídeo de 1 minuto sobre o produto, versão vertical")}
+  <a class="lvv-print" href="{url}" style="--lvv-poster:url('{v["poster_h"]}')"><i class="lvv-pimg"></i><span>Assista ao vídeo em {url.replace("https://", "")}</span></a>
+  <script>(function(){{var vs=document.querySelectorAll(".lvvideo video");function f(){{vs.forEach(function(x){{if(getComputedStyle(x).display!=="none"&&!x.poster)x.poster=x.getAttribute("data-poster");}});}}f();addEventListener("resize",f);}})();</script>
+</section>'''
+
 def build():
     _CHAP[0] = 0
     wa_svg = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px">'
@@ -379,6 +414,7 @@ def build():
 </header>'''
 
     credo = f'<section class="credo rev"><h2>{C.CREDO}</h2></section>'
+    credo += video_block()   # o vídeo entra logo abaixo do credo, como no SeuCondomínio
 
     cap_funil = chapter("funil", "O funil", "Registrou, avançou.",
         "A demonstração registrada leva o lead para a etapa certa. A proposta enviada, para a seguinte. "

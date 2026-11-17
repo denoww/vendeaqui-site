@@ -20,7 +20,7 @@ Fonte da verdade factual, nesta ordem de precedência:
     empresa por conector não oficial, com limite diário;
   • formulário de anúncio do Facebook/Instagram para qualquer empresa (depende da Meta);
   • IA ouvindo ligação telefônica — o que existe é a avaliação da reunião online;
-  • pontuação de lead, jornada automática, agenda externa, editor de e-mail marketing;
+  • pontuação de lead, agenda externa, editor de e-mail marketing;
   • autocadastro ou teste — a conta é aberta pela nossa equipe;
   • qualquer preço que não seja o canônico (R$ 39 por usuário/mês, grátis para 1).
   Como em todas as peças da casa: nada de prova social, nada de concorrente pelo nome,
@@ -47,6 +47,17 @@ HERO = {
 
 CREDO = ('CRM que exige disciplina extra é CRM que ninguém preenche. Aqui a etapa é '
          '<span class="g">consequência do que o time já faz</span>.')
+
+# ---------------------------------------------------------------- vídeo (entra logo abaixo do credo)
+# Vídeo narrado, 16:9 no desktop e 9:16 no celular: o mesmo do /livreto/crm do SeuCondomínio, que já
+# sai na marca vendeaqui (repo seucondominio: livreto/video/crm/ + video_engine/), hospedado na CDN do ERP.
+# Refez o vídeo? Rode lá `bash livreto/video/render.sh crm subir` e cole aqui o dict que ele imprime.
+VIDEO = {
+    "h":        "https://d8odo0nidtkh4.cloudfront.net/wysiwyg_sistema/images/2026/11/13/07/livreto-crm-h-nz3un28q.mp4",
+    "poster_h": "https://d8odo0nidtkh4.cloudfront.net/wysiwyg_sistema/images/2026/11/13/07/livreto-crm-poster_h-nz3un28q.jpg",
+    "v":        "https://d8odo0nidtkh4.cloudfront.net/wysiwyg_sistema/images/2026/11/13/07/livreto-crm-v-nz3un28q.mp4",
+    "poster_v": "https://d8odo0nidtkh4.cloudfront.net/wysiwyg_sistema/images/2026/11/13/07/livreto-crm-poster_v-nz3un28q.jpg",
+}
 
 # Quadro ilustrativo — INTERFACE em HTML, nunca imagem gerada (o gerador inventa texto
 # em tela). Rotulado "exemplo ilustrativo" no build: sem o rótulo, os nomes leriam como

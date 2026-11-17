@@ -58,8 +58,8 @@ PROIBIDAS = [
     ('IA analisando ligação telefônica',
      r'\bia\b[^.\n]{0,60}(liga[çc][ãa]o|telefonema)s?\s+(gravad|analisad|transcrit)'
      r'|(grava[çc][ãa]o|transcri[çc][ãa]o)\s+(de|da)\s+liga[çc]'),
-    ('pontuação de lead ou jornada automática',
-     r'(pontua[çc][ãa]o|score|scoring)\s+(de|do|dos)?\s*leads?|jornadas?\s+autom[áa]tic'),
+    ('pontuação de lead',
+     r'(pontua[çc][ãa]o|score|scoring)\s+(de|do|dos)?\s*leads?'),
     ('leads do Facebook/Instagram Lead Ads',
      r'lead\s*ads|instant\s*form|formul[áa]rio\s+instant[âa]neo'),
     ('sincronização com agenda externa',
